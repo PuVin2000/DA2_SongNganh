@@ -38,8 +38,8 @@ sliderNgang.oninput = function(){
 };
 
 // Cập nhật giá trị nhiệt độ
-// onValue(NhietDo, (snapshot) => {
-//     const data = snapshot.val();
-//     document.getElementById("nhiet do").innerHTML = data;
-// });
+onValue(NhietDo, (snapshot) => {
+    const data = snapshot.val();
+    document.getElementById("nhiet do").innerHTML = data;
+});
 
