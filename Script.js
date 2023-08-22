@@ -26,7 +26,7 @@ from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
 const db = getDatabase();
 const DoSang = ref(db, "IOT");
-const NhietDo = ref(db, "IOT/Temp");
+const DoAm = ref(db, "IOT/Humid");
 
 // Hiển thị độ sáng bóng đèn
 var sliderNgang = document.getElementById("sliderNgangID");
@@ -38,7 +38,7 @@ sliderNgang.oninput = function(){
 };
 
 // Cập nhật giá trị nhiệt độ
-onValue(NhietDo, (snapshot) => {
+onValue(DoAm, (snapshot) => {
     const data = snapshot.val();
     document.getElementById("do am").innerHTML = data;
 });
