@@ -40,6 +40,6 @@ sliderNgang.oninput = function(){
 // Cập nhật giá trị nhiệt độ
 onValue(NhietDo, (snapshot) => {
     const data = snapshot.val();
-    document.getElementById("nhiet do").innerHTML = data;
+    document.getElementById("do am").innerHTML = data;
 });
 
