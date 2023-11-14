@@ -43,3 +43,47 @@ onValue(DoAm, (snapshot) => {
     document.getElementById("do am").innerHTML = data;
 });
 
+
+var btnOpen = document.querySelector('.setting-btn')
+var modal = document.querySelector('.setting')
+var iconClose = document.querySelector('.setting__header i')
+var btnClose = document.querySelector('.setting__footer button')
+
+var CapNhatNhietDo = document.getElementById("CapNhatNhietDo");
+
+function toggleModal() {
+    modal.classList.toggle('hide')
+}
+
+btnOpen.addEventListener('click', toggleModal)
+btnClose.addEventListener('click', toggleModal)
+iconClose.addEventListener('click', toggleModal)
+modal.addEventListener('click', function (e) {
+    if (e.target == e.currentTarget) {
+        toggleModal();
+    }
+})
+// Draw Chart
+
+const labels = ['January', 'February', 'March', 'April', 'May', 'June']
+
+const data = {
+    labels: labels,
+    datasets: [
+        {
+            label: 'lượt truy cập',
+            backgroundColor: 'blue',
+            borderColor: 'blue',
+            data: [10, 27, 56, 34, 24, 53],
+            tension: 0.4,
+        },
+    ],
+}
+const config = {
+    type: 'line',
+    data: data,
+}
+const canvas = document.getElementById('canvas')
+const chart = new Chart(canvas, config)
+
+
