@@ -17,5 +17,37 @@
         <input type="range" min="0" max="100" value="0" class="slider" id="sliderNgangID">
         <script type="module" src="Script.js"></script>
     </div>
+
+    <button class="setting-btn">Setting</button>
+    <div class="setting hide">
+        <div class="setting__inner">
+            <div class="setting__header">
+                <p>Cài đặt thông số</p>
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="setting__body">
+                <div class="khu__vuc1">
+                    <p>nhiệt độ</p>
+                    <input type="text" class="nhiet__do__1" id="CapNhatNhietDo">
+                    <p>độ ẩm</p>
+                    <input type="text" class="do__am__1" id="CapNhat">
+                </div>
+                <div class="khu__vuc2">
+                    <p>nhiệt độ</p>
+                    <input type="text" class="nhiet__do__2">
+                    <p>độ ẩm</p>
+                    <input type="text" class="do__am__2">
+                </div>
+            </div>
+            <div class="setting__footer">
+                <button>Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="Chart">
+        <div class="title">Line Chart With Chart.js</div>
+        <canvas id="canvas"></canvas>
+    </div>
 </body>
 </html>
