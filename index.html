@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div>
-        <h2>Nhiệt độ: <span id="nhiet do">00</span></h2>
-        <h2>Độ ẩm: <span id="do am">00</span></h2>
-    </div>
-    <div class="container">
-        <img id="bulb01" src="bong-den.png" alt="Card image" style="width: 40%; opacity: 0.00">
-        <div <p><b> Độ sáng: <span id="sliderNgangValue">0</span>%</b></p></div>
-        <input type="range" min="0" max="100" value="0" class="slider" id="sliderNgangID">
-    </div>
 
+<body>
+    <div class="HeaderName">
+        <div class="Bach_Khoa">
+            <h1>Trường Đại học Bách Khoa</h1>
+            <h2>Khoa Điện-Điện tử</h2>
+        </div>
+        <div class="HTX_TuanNgoc">
+            <h1>HTX Tuấn Ngọc</h1>
+        </div>
+
+    </div>
     <button class="setting-btn">Setting</button>
     <div class="setting hide">
         <div class="setting__inner">
@@ -45,13 +47,58 @@
         </div>
     </div>
 
-    <div class="Chart">
-        <div class="title">Line Chart With Chart.js</div>
-        <canvas id="canvas"></canvas>
+    <div id="humidityDisplay"></div>
+
+    <div class="AreaNumber">
+        <div class="Area1">
+            <h1>Khu vực 1</h1>
+            <h2>Nhiệt độ: <span id="nhiet do">00</span></h2>
+            <h2>Độ ẩm: <span id="do am">00</span></h2>
+
+            <div id="chartContainer1" style="height: 300px; width: 70vh;"></div>
+
+            <!-- <div class="Chart1">
+                <div class="title1" style="text-align: center ;">Line Chart With Chart.js</div>
+                <canvas id="canvas1"></canvas>
+            </div> -->
+
+            <div class="container1">
+                <img class="BulbLight_1" id="bulb01" src="bong-den.png" alt="Card image">
+                <div <p><b> Độ sáng: <span id="sliderNgangValue">0</span>%</b></p>
+                </div>
+                <input type="range" min="0" max="100" value="0" class="slider" id="sliderNgangID">
+            </div>
+
+        </div>
+
+        <div class="Area2">
+            <h1>Khu vực 2</h1>
+            <h2>Nhiệt độ: <span id="nhiet do">00</span></h2>
+            <h2>Độ ẩm: <span id="do am">00</span></h2>
+            <div class="Chart2">
+                <div class="title2" style="text-align: center ;">Line Chart With Chart.js</div>
+                <canvas id="canvas2"></canvas>
+            </div>
+            <div class="container1">
+                <img class="BulbLight_2" id="bulb01" src="bong-den.png" alt="Card image">
+                <div <p><b> Độ sáng: <span id="sliderNgangValue">0</span>%</b></p>
+                </div>
+                <input type="range" min="0" max="100" value="0" class="slider" id="sliderNgangID">
+            </div>
+        </div>
+
     </div>
+
 </body>
-<script type="module" src="Script.js"></script>
 <script src="
 https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js
 "></script>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="module" src="script.js"></script>
+
 </html>

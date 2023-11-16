@@ -21,28 +21,41 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-import {getDatabase, ref, get, onValue, set, child, update, remove} 
-from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+import { getDatabase, ref, get, onValue, set ,child, update, remove }
+    from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
 const db = getDatabase();
 const DoSang = ref(db, "IOT");
 const DoAm = ref(db, "IOT/Humid");
 
+
+let HumidData = 0;
+
 // Hiển thị độ sáng bóng đèn
 var sliderNgang = document.getElementById("sliderNgangID");
 var bulb01 = document.getElementById("bulb01");
-sliderNgang.oninput = function(){
+sliderNgang.oninput = function () {
     document.getElementById("sliderNgangValue").innerHTML = sliderNgang.value;
-    bulb01.style.opacity = sliderNgang.value/100;
-    update(DoSang, {'Light': Number(sliderNgang.value)});
+    bulb01.style.opacity = sliderNgang.value / 100;
+    update(DoSang, { 'Light': Number(sliderNgang.value) });
 };
 
-// Cập nhật giá trị nhiệt độ
-onValue(DoAm, (snapshot) => {
+
+// // Cập nhật giá trị nhiệt độ
+onValue(DoAm,(snapshot) => {
     const data = snapshot.val();
+    console.log(data);
+    HumidData = data;
     document.getElementById("do am").innerHTML = data;
+    //return data
 });
 
+
+console.log(HumidData);
+
+//console.log(getData);
+
+// toggle button
 
 var btnOpen = document.querySelector('.setting-btn')
 var modal = document.querySelector('.setting')
@@ -63,27 +76,106 @@ modal.addEventListener('click', function (e) {
         toggleModal();
     }
 })
+
+
+
+window.onload = function () {
+
+    var dps = []; // dataPoints
+    var chart = new CanvasJS.Chart("chartContainer1", {
+        title: {
+            text: "Dynamic Data"
+        },
+        data: [{
+            type: "line",
+            dataPoints: dps,
+            xValueType: "dateTime",
+            xValueFormatString: " hh:mm TT"
+        }]
+    });
+
+    var time = new Date;
+
+    time.getHours();
+    time.getMinutes();
+    //time.getSeconds();
+    //time.setMilliseconds(00);
+
+    var xVal = 0;
+    var yVal = 0;
+    var updateInterval = 1000;
+    var dataLength = 20; // number of dataPoints visible at any point
+
+    var updateChart = function (count) {
+
+        count = count || 1;
+
+        for (var j = 0; j < count; j++) {
+            time.setTime(time.getTime() + updateInterval);
+            yVal = HumidData
+            //console.log(HumidData)
+            // console.log(onValue(DoAm, (snapshot) => {
+            //     const data = snapshot.val()
+            // }))
+
+            //console.log(HumidData)
+            dps.push({
+                x: time.getTime(),
+                y: 0
+            });
+        }
+
+        if (dps.length > dataLength) {
+            dps.shift();
+        }
+
+        chart.render();
+    };
+
+    updateChart(dataLength);
+    //setInterval(function () { updateChart() }, updateInterval);
+}
+
+
 // Draw Chart
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June']
+// const labels = ['January', 'February', 'March', 'April', 'May', 'June']
 
-const data = {
-    labels: labels,
-    datasets: [
-        {
-            label: 'lượt truy cập',
-            backgroundColor: 'blue',
-            borderColor: 'blue',
-            data: [10, 27, 56, 34, 24, 53],
-            tension: 0.4,
-        },
-    ],
-}
-const config = {
-    type: 'line',
-    data: data,
-}
-const canvas = document.getElementById('canvas')
-const chart = new Chart(canvas, config)
+// const data = {
+//     labels: labels,
+//     datasets: [
+//         {
+//             label: 'lượt truy cập',
+//             backgroundColor: 'blue',
+//             borderColor: 'blue',
+//             data: [10, 27, 56, 34, 24, 53],
+//             tension: 0.4,
+//         },
+//     ],
+// }
+// const config = {
+//     type: 'line',
+//     data: data,
+// }
+
+
+
+// const canvas1 = document.getElementById('canvas1')
+// const canvas2 = document.getElementById('canvas2')
+// const chart1 = new Chart(canvas1, config)
+//const char2 = new Chart(canvas2, config)
+
+
+
+
+// var HumidData = 0;
+
+// const getHum = async (DoAm) =>{
+//     const valuehumid = await get(DoAm)
+//     return valuehumid.val()
+// }
+
+// HumidData = await getHum(DoAm)
+//console.log(HumidData)
 
 
