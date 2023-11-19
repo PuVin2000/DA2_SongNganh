@@ -12,10 +12,14 @@
 <body>
     <div class="HeaderName">
         <div class="Bach_Khoa">
-            <h1>Trường Đại học Bách Khoa</h1>
-            <h2>Khoa Điện-Điện tử</h2>
+            <img class="BachKhoaU" id="BachKhoaimage" src="picture/BachKhoa.jpg" style="height: 20vh;" alt="Card image">
+            <div>
+                <h1>Trường Đại học Bách Khoa</h1>
+                <h2>Khoa Điện-Điện tử</h2>
+            </div>
         </div>
         <div class="HTX_TuanNgoc">
+            <img class="HTXTuanNgoc" id="HTXimage" src="picture/images.png" style="height: 20vh;" alt="Card image">
             <h1>HTX Tuấn Ngọc</h1>
         </div>
 
@@ -54,19 +58,13 @@
             <h2>Nhiệt độ: <span id="nhiet do">00</span></h2>
 
             <div id="chartTemp1" style="height: 300px; width: 70vh;"></div>
-          
+
             <h2>Độ ẩm: <span id="do am">00</span></h2>
 
             <div id="chartHumid1" style="height: 300px; width: 70vh;"></div>
 
-            <!-- <div class="Chart1">
-                <div class="title1" style="text-align: center ;">Line Chart With Chart.js</div>
-                <canvas id="canvas1"></canvas>
-            </div> -->
-
-
             <div class="container1">
-                <img class="BulbLight_1" id="bulb01" src="bong-den.png" alt="Card image">
+                <img class="BulbLight_1" id="bulb01" src="picture/bong-den.png" alt="Card image">
                 <div <p><b> Độ sáng: <span id="sliderNgangValue">0</span>%</b></p>
                 </div>
                 <input type="range" min="0" max="100" value="0" class="slider" id="sliderNgangID">
@@ -77,13 +75,11 @@
         <div class="Area2">
             <h1>Khu vực 2</h1>
             <h2>Nhiệt độ: <span id="nhiet do">00</span></h2>
+            <div id="chartTemp2" style="height: 300px; width: 70vh;"></div>
             <h2>Độ ẩm: <span id="do am">00</span></h2>
-            <div class="Chart2">
-                <div class="title2" style="text-align: center ;">Line Chart With Chart.js</div>
-                <canvas id="canvas2"></canvas>
-            </div>
-            <div class="container1">
-                <img class="BulbLight_2" id="bulb01" src="bong-den.png" alt="Card image">
+            <div id="chartHumid1" style="height: 300px; width: 70vh;"></div>
+            <div class="container2">
+                <img class="BulbLight_2" id="bulb02" src="picture/bong-den.png" alt="Card image">
                 <div <p><b> Độ sáng: <span id="sliderNgangValue">0</span>%</b></p>
                 </div>
                 <input type="range" min="0" max="100" value="0" class="slider" id="sliderNgangID">

@@ -110,6 +110,7 @@ const ElementChart0 = {
         xValueType: "dateTime",
         xValueFormatString: " hh:mm:ss TT",
         lineDashType: "solid",
+        markerType: "triangle",
     }],
 }
 
