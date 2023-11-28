@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="tab_box"> 
+        <!-- tabs->tab_box -->
+
+        <!-- <h3 class="active">Tab 1</h3>
+        <h3>Tab 2</h3>
+        <h3>Tab 3</h3> -->
+        <button class="tab-btn active">home</button>
+        <button class="tab-btn">about</button>
+        <button class="tab-btn">blog</button>
+        <div class="line">
+
+        </div>
+      </div>
+      <div class="content_box">
+        <!-- tab-content=> content_box -->
+        <div class="content active">
+            <!-- active => content -->
+          <h2>First Title</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
+            explicabo cum dolores hic possimus aut corrupti quisquam aperiam
+            quia veniam inventore officiis nam error sunt libero, commodi
+            architecto reiciendis qui fuga, itaque delectus quidem sequi.
+            Impedit natus culpa nihil aperiam adipisci aliquam error, suscipit
+            odio? Error sed esse perspiciatis quasi velit, ratione odit
+            architecto? Explicabo pariatur.
+          </p>
+        </div>
+
+        <div class="content">
+          <h2>Second Title</h2>
+                <h2>Độ ẩm: <span id="do am">00</span></h2>
+                <div id="chartHumid1" style="height: 300px; width: 70vh;"></div>
+            
+                <h2>Nhiệt độ: <span id="nhiet do">00</span></h2>
+                <div id="chartTemp1" style="height: 300px; width: 70vh;"></div>
+        </div>
+
+        <div class="content">
+          <h2>Third Title</h2>
+          <div class="container1">
+            <img class="BulbLight_1" id="bulb01" src="../picture/bong-den.png" alt="Card image">
+            <div <p><b> Độ sáng: <span id="sliderNgangValue">0</span>%</b></p>
+            </div>
+            <input type="range" min="0" max="100" value="0" class="slider" id="sliderNgangID">
+        </div>
+        </div>
+      </div>
+    </div>
+    <!--Script-->
+    <script src="tabsJS.js"></script>
+  </body>
+</html>

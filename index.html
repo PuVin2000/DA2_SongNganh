@@ -4,96 +4,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DA2_SongNganh</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
 </head>
 
 <body>
     <div class="HeaderName">
         <div class="Bach_Khoa">
-            <img class="BachKhoaU" id="BachKhoaimage" src="picture/BachKhoa.jpg" style="height: 20vh;" alt="Card image">
+            <img class="BachKhoaU" id="BachKhoaimage" src="../picture/BachKhoa.jpg" style="height: 20vh;"
+                alt="Card image">
             <div>
                 <h1>Trường Đại học Bách Khoa</h1>
                 <h2>Khoa Điện-Điện tử</h2>
             </div>
         </div>
         <div class="HTX_TuanNgoc">
-            <img class="HTXTuanNgoc" id="HTXimage" src="picture/images.png" style="height: 20vh;" alt="Card image">
+            <img class="HTXTuanNgoc" id="HTXimage" src="../picture/images.png" style="height: 20vh;" alt="Card image">
             <h1>HTX Tuấn Ngọc</h1>
         </div>
-
     </div>
-    <button class="setting-btn">Setting</button>
-    <div class="setting hide">
-        <div class="setting__inner">
-            <div class="setting__header">
-                <p>Cài đặt thông số</p>
-                <i class="fa-solid fa-xmark"></i>
+
+    <div class="container">
+        <div class="tab_box">
+            <!-- tabs->tab_box -->
+
+            <!-- <h3 class="active">Tab 1</h3>
+          <h3>Tab 2</h3>
+          <h3>Tab 3</h3> -->
+            <button class="tab-btn active">HTX Tuấn Ngọc</button>
+            <button class="tab-btn">Biểu đồ nhiệt độ & độ ẩm</button>
+            <button class="tab-btn">Điều khiển</button>
+            <div class="line">
+
             </div>
-            <div class="setting__body">
-                <div class="khu__vuc1">
-                    <p>nhiệt độ</p>
-                    <input type="text" class="nhiet__do__1" id="CapNhatNhietDo">
-                    <p>độ ẩm</p>
-                    <input type="text" class="do__am__1" id="CapNhat">
-                </div>
-                <div class="khu__vuc2">
-                    <p>nhiệt độ</p>
-                    <input type="text" class="nhiet__do__2">
-                    <p>độ ẩm</p>
-                    <input type="text" class="do__am__2">
-                </div>
+        </div>
+        <div class="content_box">
+            <!-- tab-content=> content_box -->
+            <div class="content active">
+                <!-- active => content -->
+                <h2>Trang chủ</h2>
+                <p>
+                    -Với diện tích trồng 7.000 m2, HTX Tuấn Ngọc thu hoạch 800 - 1.000 kg rau mỗi ngày. Ông
+                    Trần Song Ngọc, phógiám đốc HTX nông nghiệp Tuấn Ngọc cho biết: “Trước khi bước vào
+                    lĩnh vực này, chúng tôi nghiên cứu rất nhiều kỹ thuật trồng rau sạch và quyết định
+                    chọn phương pháp trồng rau thủy canh (Hydroponic) bao gồm hệ thống hồi lưu và hệ thống nhỏ giọt.
+                    Các thiết bị từ nhà màng đến hệ thống thủy canh được thiết kế theo đúng tiêu chuẩn của Israel. Toàn
+                    bộ hệ thống đều được điều khiển tự động”.
+                </p>
+
+                <p>
+                    -Những ưu điểm mô hình trồng rau thủy canh: tất cảrau được trồng trong nhà màng, tránh
+                    được
+                    côn trùng, sâu bọ. Phía trên trần nhàmàng được thiết kế bằng màng nylon, lấy được ánh
+                    sáng cho cây, không cần phải tái tạo đất giữa các vụ hoặc ngưng canh tác khi gặp mưa
+                    bão... giúp thu hoạch và giáthành ổn định quanh năm.
+
+                </p>
+
+                <p>
+                    -Trong nhà màng, được đặt hệ thống cảm biến về nhiệt độ, độ ẩm.
+                    Khi nhiệt độ tăng quá 35 – 40 độ C, cảm biến sẽ tự kích cho hệ thống phun sương làm giảm nhiệt độ
+                    nhà màng, tạo điều kiện thuận lợi cho cây phát triển.
+
+                </p>
+
+                <p>
+                    -Khi độ ẩm quá cao, hệ thống quạt gió tự động kích hoạt làm mát. Buổi sáng, hệ thống quạt tự kích
+                    hoạt để lấy khí trời từ bên ngoài vào giúp cho cây quang hợp tốt hơn. Buổi tối, hệ thống tự động tắt
+                    bơm nước. Vìvậy, rau không bịtác động thời tiết mưa gió bên ngoài.
+                </p>
+
+                <p>
+                    -Khi nhiệt độ nước tăng lên 28 – 35 độ C, lượng oxy trong nước giảm đi rất nhiều, khi đó hệ thống sẽ
+                    bơm oxy vào trong nước, từ đó nước sẽ cung cấp oxy cho rễ giúp cây phát triển hoàn thiện.
+                </p>
+                <p>
+                    -Toàn bộ hệ thống trên được quản lý tại trung tâm quản lý dữ liệu và lưu lại trên hệ thống máy tính
+                    làm dữ liệu cho các mùa vụ sau.
+                </p>
+
+                <p>
+                    -Hạt giống được chọn từ các thương hiệu uy tín của Việt Nam hoặc nước ngoài. Hạt được ươm trong
+                    giá thể mụn dừa (chiếm 95 - 97%), tỷ lệ xơ 2%; giúp hạt nảy mầm tốt hơn. Giai đoạn gieo hạt để ở bên
+                    ngoài 1 ngày vàươm cây trên giàn ươm 10 ngày. Sau đó, cây sẽ được cho ra hệ thống chính thủy canh
+                    để hệ thống tự nuôi.
+                </p>
+
+                <p>
+                    -Theo ông Ngọc, chất dinh dưỡng nuôi cây rất quan trọng, cần hội đủ các yếu tố đa - vi - trung
+                    lượng gồm 16 khoáng chất, giúp cây phát triển ổn định, giữ được hương vị tự nhiên giống như trồng
+                    đất. Nước nuôi cây cũng phải sạch, không chứa tạp chất.
+                </p>
+
+                <p>
+                    -Tùy theo từng loại cây, cóthời gian thu hoạch khác nhau, trung bình từ khi nảy mầm đến thu
+                    hoạch là 28 - 30 ngày, riêng xà lách 40 - 45 ngày. Sau khi thu hoạch, toàn bộ giàn được vệ sinh
+                    sạch để chuẩn bị cho đợt trồng mới.
+                </p>
             </div>
-            <div class="setting__footer">
-                <button>Close</button>
+
+            <div class="content">
+                <h2>Biểu đồ</h2>
+                <div class="AreaNumber">
+                    <div class="Area1">
+                        <h1>Khu vực 1</h1>
+
+                        <h2>Nhiệt độ: <span id="nhiet do">00</span></h2>
+
+                        <div id="chartTemp1" style="height: 300px; width: 70vh;"></div>
+
+                        <h2>Độ ẩm: <span id="do am">00</span></h2>
+
+                        <div id="chartHumid1" style="height: 300px; width: 70vh;"></div>
+                    </div>
+
+                    <div class="Area2">
+                        <h1>Khu vực 2</h1>
+                        <h2>Nhiệt độ: <span id="nhiet do">00</span></h2>
+                        <div id="chartTemp2" style="height: 300px; width: 70vh;"></div>
+                        <h2>Độ ẩm: <span id="do am">00</span></h2>
+                        <div id="chartHumid1" style="height: 300px; width: 70vh;"></div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="content">
+                <h2>Third Title</h2>
+                <button class="setting-btn">Setting</button>
+                <div class="setting hide">
+                    <div class="setting__inner">
+                        <div class="setting__header">
+                            <p>Cài đặt thông số</p>
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                        <div class="setting__body">
+                            <div class="khu__vuc1">
+                                <h3>Khu vực 1</h3>
+                                <p>nhiệt độ</p>
+                                <input type="number" class="nhiet__do__1" id="UpdateTempArea1">
+                                <p>độ ẩm</p>
+                                <input type="number" class="do__am__1" id="UpdateHumidArea1">
+                            </div>
+                            <div class="khu__vuc2">
+                                <h3>Khu vực 2</h3>
+                                <p>nhiệt độ</p>
+                                <input type="number" class="nhiet__do__2" id="UpdateTempArea2">
+                                <p>độ ẩm</p>
+                                <input type="number" class="do__am__2" id="UpdateHumidArea2">
+                            </div>
+                        </div>
+                        <div class="setting__footer">
+                            <button>Close</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="container1">
+                    <img class="BulbLight_1" id="bulb01" src="../picture/bong-den.png" alt="Card image">
+                    <div>
+                        <p><b> Độ sáng: <span id="sliderNgangValue">0</span>%</b></p>
+                    </div>
+                    <input type="range" min="0" max="100" value="0" class="slider" id="sliderNgangID">
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="AreaNumber">
-        <div class="Area1">
-            <h1>Khu vực 1</h1>
-
-            <h2>Nhiệt độ: <span id="nhiet do">00</span></h2>
-
-            <div id="chartTemp1" style="height: 300px; width: 70vh;"></div>
-
-            <h2>Độ ẩm: <span id="do am">00</span></h2>
-
-            <div id="chartHumid1" style="height: 300px; width: 70vh;"></div>
-
-            <div class="container1">
-                <img class="BulbLight_1" id="bulb01" src="picture/bong-den.png" alt="Card image">
-                <div <p><b> Độ sáng: <span id="sliderNgangValue">0</span>%</b></p>
-                </div>
-                <input type="range" min="0" max="100" value="0" class="slider" id="sliderNgangID">
-            </div>
-
-        </div>
-
-        <div class="Area2">
-            <h1>Khu vực 2</h1>
-            <h2>Nhiệt độ: <span id="nhiet do">00</span></h2>
-            <div id="chartTemp2" style="height: 300px; width: 70vh;"></div>
-            <h2>Độ ẩm: <span id="do am">00</span></h2>
-            <div id="chartHumid1" style="height: 300px; width: 70vh;"></div>
-            <div class="container2">
-                <img class="BulbLight_2" id="bulb02" src="picture/bong-den.png" alt="Card image">
-                <div <p><b> Độ sáng: <span id="sliderNgangValue">0</span>%</b></p>
-                </div>
-                <input type="range" min="0" max="100" value="0" class="slider" id="sliderNgangID">
-            </div>
-        </div>
-
-    </div>
-
 </body>
 <script src="
 https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js
 "></script>
 
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 <script type="module" src="Script.js"></script>
 
 </html>

@@ -27,10 +27,11 @@ import { getDatabase, ref, get, onValue, set, child, update, remove }
 
 const db = getDatabase();
 const DoSang = ref(db, "IOT");
+const CapNhatGiatriArea1 = ref(db, "CapNhat/Area1");
+const CapNhatGiatriArea2 = ref(db, "CapNhat/Area2");
 
 const DoAm1 = ref(db, "IOT/Area1/Humid");
 const NhietDo1 = ref(db, "IOT/Area1/Temp");
-
 
 
 onValue(DoAm1, (snapshot) => {
@@ -47,6 +48,39 @@ onValue(NhietDo1, (snapshot) => {
     document.getElementById("nhiet do").innerHTML = data;
 });
 
+var sliderNgang = document.getElementById("sliderNgangID");
+var bulb01 = document.getElementById("bulb01");
+sliderNgang.oninput = function () {
+    document.getElementById("sliderNgangValue").innerHTML = sliderNgang.value;
+    bulb01.style.opacity = sliderNgang.value / 100;
+    update(DoSang, { 'Light': Number(sliderNgang.value) });
+};
+
+function SettingTemp(IDValue,PathFireBase) {
+    var SettingValue = document.getElementById(IDValue);
+    //String(SettingFirebase);
+    SettingValue.oninput = function () {
+        update(PathFireBase, {'Temp': Number(SettingValue.value) });
+    }
+}
+
+SettingTemp("UpdateTempArea1",CapNhatGiatriArea1)
+SettingTemp("UpdateTempArea2",CapNhatGiatriArea2)
+
+function SettingHumid(IDValue,PathFireBase) {
+    var SettingValue = document.getElementById(IDValue);
+    //String(SettingFirebase);
+    SettingValue.oninput = function () {
+        update(PathFireBase, {'Humid': Number(SettingValue.value) });
+    }
+}
+
+SettingHumid("UpdateHumidArea1",CapNhatGiatriArea1)
+SettingHumid("UpdateHumidArea2",CapNhatGiatriArea2)
+// Setting("UpdateTempArea1",CapNhatGiatriArea1,'Temp');
+// Setting("UpdateHumidArea1",CapNhatGiatriArea1,'Humid');
+// Setting("UpdateTempArea2",CapNhatGiatriArea2,'Temp');
+// Setting("UpdateHumidArea2",CapNhatGiatriArea2,'Humid');
 
 var dps0 = []
 var dps1 = []; // dataPoints
@@ -59,7 +93,7 @@ const ElementChart0 = {
         }
     },
     title: {
-        text: "Dynamic Data"
+        text: "Độ ẩm"
     },
     data: [{
         type: "line",
@@ -77,7 +111,7 @@ const ElementChart1 = {
         }
     },
     title: {
-        text: "Dynamic Data"
+        text: "Nhiệt độ"
     },
     data: [{
         type: "line",
@@ -109,24 +143,7 @@ var updateChart = function (index, valueindex, count) {
     time.setTime(time.getTime() + updateInterval);
 
     yVal = valueindex
-    //console.log(valuehumid)
 
-    //console.log(ElementChart.data[2].dataPoints) 
-    //= "shortDot";
-    //ElementChart.update();
-
-    // if (index == 0) {
-    //     dps0.push({
-    //         x: time.getTime(),
-    //         y: yVal
-    //     });
-    // }
-    // else if (index == 1) {
-    //     dps1.push({
-    //         x: time.getTime(),
-    //         y: yVal
-    //     });
-    // }
     dpsNumber[index].push({
         x: time.getTime(),
         y: yVal
@@ -138,19 +155,44 @@ var updateChart = function (index, valueindex, count) {
     }
 
     charNumber[index].render();
-    // if (index == 0) {
-    //     chart1.render();
-    // }
-    // else if (index == 1) {
-    //     chart2.render();
-    // }
-    // else if (index == 2) {
-    //     chart3.render();
-    // }
-    // else if (index == 3) {
-    //     chart4.render();
-    // }
 };
+
+
+const tabs = document.querySelectorAll('.tab-btn')
+const all_content = document.querySelectorAll('.content')
+
+tabs.forEach((tab, index) => {
+    tab.addEventListener('click', (e) => {
+        tabs.forEach(tab => { tab.classList.remove('active') })
+        tab.classList.add('active');
+
+        var line = document.querySelector('.line');
+        line.style.width = e.target.offsetWidth + "px";
+        line.style.left = e.target.offsetLeft + "px";
+
+        all_content.forEach(content => { content.classList.remove('active') })
+        all_content[index].classList.add('active')
+    })
+})
+
+var btnOpen = document.querySelector('.setting-btn')
+var modal = document.querySelector('.setting')
+var iconClose = document.querySelector('.setting__header i')
+var btnClose = document.querySelector('.setting__footer button')
+
+function toggleModal() {
+    modal.classList.toggle('hide')
+}
+
+btnOpen.addEventListener('click', toggleModal)
+btnClose.addEventListener('click', toggleModal)
+iconClose.addEventListener('click', toggleModal)
+modal.addEventListener('click', function (e) {
+    if (e.target == e.currentTarget) {
+        toggleModal();
+    }
+})
+
 
 
 
