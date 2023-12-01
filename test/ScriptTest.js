@@ -33,19 +33,22 @@ const CapNhatGiatriArea2 = ref(db, "CapNhat/Area2");
 const DoAm1 = ref(db, "IOT/Area1/Humid");
 const NhietDo1 = ref(db, "IOT/Area1/Temp");
 
+const DoAm2 = ref(db, "IOT/Area2/Humid");
+const NhietDo2 = ref(db, "IOT/Area2/Temp");
+
 
 onValue(DoAm1, (snapshot) => {
     const data = snapshot.val();
     updateChart(0, data, 100)
     //setTimeout(function () { updateChart(data, 20) }, 1);
-    document.getElementById("do am").innerHTML = data;
+    document.getElementById("do am khu vuc 1").innerHTML = data;
 });
 
 onValue(NhietDo1, (snapshot) => {
     const data = snapshot.val();
     updateChart(1, data, 100)
     //setTimeout(function () { updateChart(data, 20) }, 1);
-    document.getElementById("nhiet do").innerHTML = data;
+    document.getElementById("nhiet do khu vuc 1").innerHTML = data;
 });
 
 var sliderNgang = document.getElementById("sliderNgangID");
@@ -82,11 +85,13 @@ SettingHumid("UpdateHumidArea2",CapNhatGiatriArea2)
 // Setting("UpdateTempArea2",CapNhatGiatriArea2,'Temp');
 // Setting("UpdateHumidArea2",CapNhatGiatriArea2,'Humid');
 
-var dps0 = []
-var dps1 = []; // dataPoints
-var dpsNumber = [dps0, dps1]
+var dpsTempArea1 = []
+var dpsHumidArea1 = []// dataPoints
+var dpsTempArea2 = []
+var dpsHumidArea2 = []
+var dpsNumber = [dpsTempArea1, dpsHumidArea1,dpsTempArea2,dpsHumidArea2]
 
-const ElementChart0 = {
+const ElementChartTempArea1 = {
     axisX: {
         labelFormatter: function (e) {
             return CanvasJS.formatDate(e.value, "hh:mm TT");
@@ -104,7 +109,43 @@ const ElementChart0 = {
     }],
 }
 
-const ElementChart1 = {
+const ElementChartHumidArea1 = {
+    axisX: {
+        labelFormatter: function (e) {
+            return CanvasJS.formatDate(e.value, "hh:mm TT");
+        }
+    },
+    title: {
+        text: "Nhiệt độ"
+    },
+    data: [{
+        type: "line",
+        dataPoints: dps1,
+        xValueType: "dateTime",
+        xValueFormatString: " hh:mm:ss TT",
+        lineDashType: "solid",
+    }],
+}
+
+const ElementChartTempArea2 = {
+    axisX: {
+        labelFormatter: function (e) {
+            return CanvasJS.formatDate(e.value, "hh:mm TT");
+        }
+    },
+    title: {
+        text: "Nhiệt độ"
+    },
+    data: [{
+        type: "line",
+        dataPoints: dps1,
+        xValueType: "dateTime",
+        xValueFormatString: " hh:mm:ss TT",
+        lineDashType: "solid",
+    }],
+}
+
+const ElementChartHumidArea2 = {
     axisX: {
         labelFormatter: function (e) {
             return CanvasJS.formatDate(e.value, "hh:mm TT");
@@ -123,10 +164,13 @@ const ElementChart1 = {
 }
 
 
-var chart1 = new CanvasJS.Chart("chartHumid1", ElementChart0);
-var chart2 = new CanvasJS.Chart("chartTemp1", ElementChart1);
+var chartTempArea1 = new CanvasJS.Chart("chartHumid1", ElementChartTempArea1);
+var chartHumidArea1 = new CanvasJS.Chart("chartTemp1", ElementChartHumidArea1);
+var chartTempArea2 = new CanvasJS.Chart("chartTemp1", ElementChartTempArea2);
+var chartHumidArea2 = new CanvasJS.Chart("chartTemp1", ElementChartHumidArea2);
 
-var charNumber = [chart1, chart2]
+
+var charNumber = [chartTempArea1, chartHumidArea1,chartTempArea2,chartHumidArea2]
 
 var xVal = 0;
 var yVal = 0;
