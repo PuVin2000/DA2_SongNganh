@@ -26,9 +26,9 @@ import { getDatabase, ref, get, onValue, set, child, update, remove }
     from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
 const db = getDatabase();
-const DoSang = ref(db, "IOT/Area1");
-const CapNhatGiatriArea1 = ref(db, "IOT/Area1/Update");
-const CapNhatGiatriArea2 = ref(db, "IOT/Area2/Update");
+const DoSang = ref(db, "IOT/Update/Area1");
+const CapNhatGiatriArea1 = ref(db, "IOT/Update/Area1");
+const CapNhatGiatriArea2 = ref(db, "IOT/Update/Area2");
 
 const DoAm1 = ref(db, "IOT/Area1/Getting/Humid");
 const NhietDo1 = ref(db, "IOT/Area1/Getting/Temp");
