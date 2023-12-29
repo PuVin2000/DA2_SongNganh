@@ -26,9 +26,9 @@ import { getDatabase, ref, get, onValue, set, child, update, remove }
     from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
 const db = getDatabase();
-const DoSang = ref(db, "IOT/Update/Area1");
-const CapNhatGiatriArea1 = ref(db, "IOT/Update/Area1");
-const CapNhatGiatriArea2 = ref(db, "IOT/Update/Area2");
+const DoSang = ref(db, "IOT/Update");
+const CapNhatGiatriArea1 = ref(db, "IOT/Update");
+const CapNhatGiatriArea2 = ref(db, "IOT/Update");
 
 const DoAm1 = ref(db, "IOT/Area1/Getting/Humid");
 const NhietDo1 = ref(db, "IOT/Area1/Getting/Temp");
@@ -70,14 +70,21 @@ var bulb01 = document.getElementById("bulb01");
 sliderNgang.oninput = function () {
     document.getElementById("sliderNgangValue").innerHTML = sliderNgang.value;
     bulb01.style.opacity = sliderNgang.value / 100;
-    update(DoSang, { 'Light': Number(sliderNgang.value) });
+    update(DoSang, { 'LightArea1': Number(sliderNgang.value) });
 };
 
 function SettingTemp(IDValue, PathFireBase) {
     var SettingValue = document.getElementById(IDValue);
     //String(SettingFirebase);
-    SettingValue.oninput = function () {
-        update(PathFireBase, { 'Temp': Number(SettingValue.value) });
+    if (IDValue == "UpdateTempArea1") {
+        SettingValue.oninput = function () {
+            update(PathFireBase, { 'TempArea1': Number(SettingValue.value) });
+        }
+    }
+    else if (IDValue == "UpdateTempArea2") {
+        SettingValue.oninput = function () {
+            update(PathFireBase, { 'TempArea2': Number(SettingValue.value) });
+        }
     }
 }
 
@@ -87,8 +94,15 @@ SettingTemp("UpdateTempArea2", CapNhatGiatriArea2)
 function SettingHumid(IDValue, PathFireBase) {
     var SettingValue = document.getElementById(IDValue);
     //String(SettingFirebase);
-    SettingValue.oninput = function () {
-        update(PathFireBase, { 'Humid': Number(SettingValue.value) });
+    if (IDValue == "UpdateHumidArea1") {
+        SettingValue.oninput = function () {
+            update(PathFireBase, { 'HumidArea1': Number(SettingValue.value) });
+        }
+    }
+    else if (IDValue == "UpdateHumidArea2") {
+        SettingValue.oninput = function () {
+            update(PathFireBase, { 'HumidArea2': Number(SettingValue.value) });
+        }
     }
 }
 
