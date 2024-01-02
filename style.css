@@ -72,6 +72,54 @@ body {
     animation: moving .5s ease;
 }
 
+.content_box .content .TrangchuBox{
+    background-color: #d0eef7;
+    margin-bottom: 20px;
+}
+
+.content_box .content .DoAnTotNghiep{
+    font-size: 40px;
+    text-align: center;
+    background-color: #6257b5;
+    margin-top: 30px;
+    color: aquamarine;
+}
+
+.content_box .content .Chude{
+    font-size: 50px;
+    text-align: center;
+    margin-top: 30px;
+    color: rgb(148, 8, 8);
+}
+
+.content_box .content .TeacherGuide{
+    font-size: 30px;
+    margin-left: 300px;
+    margin-top: 30px;
+}
+
+.content_box .content .ThayTuan{
+    font-size: 25px;
+    margin-left: 650px;
+    margin-top: 30px;
+}
+.content_box .content .ThayDung{
+    font-size: 25px;
+    margin-left: 650px;
+    margin-top: 30px;
+}
+.content_box .content .Student{
+    font-size: 25px;
+    margin-left: 300px;
+    margin-top: 30px;
+}
+
+.content_box .content .MSSV{
+    font-size: 25px;
+    margin-left: 300px;
+    margin-top: 30px;
+}
+
 @keyframes moving{
     from{
         transition: translateX(50px);
@@ -99,7 +147,7 @@ body {
 .line{
     position: absolute;
     top: 62px;
-    left: 160px;
+    left: 100px;
     width: 122px;
     height: 5px;
     background-color: #7360ff;

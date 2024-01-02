@@ -34,11 +34,22 @@ const DoAm1 = ref(db, "IOT/Area1/Getting/Humid");
 const NhietDo1 = ref(db, "IOT/Area1/Getting/Temp");
 
 const DoAm2 = ref(db, "IOT/Area2/Getting/Humid");
-const NhietDo2 = ref(db, "IOT/Area1/Getting/Temp");
+const NhietDo2 = ref(db, "IOT/Area2/Getting/Temp");
 
+const CheckLoraConnect = ref(db,"IOT/Area1/LoRa")
+
+onValue(CheckLoraConnect, (snapshot) => {
+    const data = snapshot.val();
+    console.log(data)
+    if(data==0)
+    {
+        alert("Lora Node 1 Disconnect")
+    }
+});
 
 onValue(DoAm1, (snapshot) => {
     const data = snapshot.val();
+    console.log(snapshot)
     updateChart(1, data, 100)
     //setTimeout(function () { updateChart(data, 20) }, 1);
     document.getElementById("do am khu vuc 1").innerHTML = data;
@@ -51,14 +62,14 @@ onValue(NhietDo1, (snapshot) => {
     document.getElementById("nhiet do khu vuc 1").innerHTML = data;
 });
 
-onValue(DoAm1, (snapshot) => {
+onValue(DoAm2, (snapshot) => {
     const data = snapshot.val();
     updateChart(3, data, 100)
     //setTimeout(function () { updateChart(data, 20) }, 1);
     document.getElementById("do am khu vuc 2").innerHTML = data;
 });
 
-onValue(NhietDo1, (snapshot) => {
+onValue(NhietDo2, (snapshot) => {
     const data = snapshot.val();
     updateChart(2, data, 100)
     //setTimeout(function () { updateChart(data, 20) }, 1);
