@@ -27,6 +27,20 @@ import { getDatabase, ref, get, onValue, set, child, update, remove }
 
 const db = getDatabase();
 const DoSang = ref(db, "IOT/Update");
+
+// CheckLoraConncet
+const CheckLoraConnect = ref(db, "IOT/Area1/LoRa")
+
+onValue(CheckLoraConnect, (snapshot) => {
+    const data = snapshot.val();
+    console.log(data)
+    if (data == 0) {
+        alert("Lora Node 1 Disconnect")
+    }
+});
+
+// Get Temp & Humid and Draw Chart
+
 const CapNhatGiatriArea1 = ref(db, "IOT/Update");
 const CapNhatGiatriArea2 = ref(db, "IOT/Update");
 
@@ -36,94 +50,8 @@ const NhietDo1 = ref(db, "IOT/Area1/Getting/Temp");
 const DoAm2 = ref(db, "IOT/Area2/Getting/Humid");
 const NhietDo2 = ref(db, "IOT/Area2/Getting/Temp");
 
-const CheckLoraConnect = ref(db,"IOT/Area1/LoRa")
 
-onValue(CheckLoraConnect, (snapshot) => {
-    const data = snapshot.val();
-    console.log(data)
-    if(data==0)
-    {
-        alert("Lora Node 1 Disconnect")
-    }
-});
-
-onValue(DoAm1, (snapshot) => {
-    const data = snapshot.val();
-    console.log(snapshot)
-    updateChart(1, data, 100)
-    //setTimeout(function () { updateChart(data, 20) }, 1);
-    document.getElementById("do am khu vuc 1").innerHTML = data;
-});
-
-onValue(NhietDo1, (snapshot) => {
-    const data = snapshot.val();
-    updateChart(0, data, 100)
-    //setTimeout(function () { updateChart(data, 20) }, 1);
-    document.getElementById("nhiet do khu vuc 1").innerHTML = data;
-});
-
-onValue(DoAm2, (snapshot) => {
-    const data = snapshot.val();
-    updateChart(3, data, 100)
-    //setTimeout(function () { updateChart(data, 20) }, 1);
-    document.getElementById("do am khu vuc 2").innerHTML = data;
-});
-
-onValue(NhietDo2, (snapshot) => {
-    const data = snapshot.val();
-    updateChart(2, data, 100)
-    //setTimeout(function () { updateChart(data, 20) }, 1);
-    document.getElementById("nhiet do khu vuc 2").innerHTML = data;
-});
-
-var sliderNgang = document.getElementById("sliderNgangID");
-var bulb01 = document.getElementById("bulb01");
-sliderNgang.oninput = function () {
-    document.getElementById("sliderNgangValue").innerHTML = sliderNgang.value;
-    bulb01.style.opacity = sliderNgang.value / 100;
-    update(DoSang, { 'LightArea1': Number(sliderNgang.value) });
-};
-
-function SettingTemp(IDValue, PathFireBase) {
-    var SettingValue = document.getElementById(IDValue);
-    //String(SettingFirebase);
-    if (IDValue == "UpdateTempArea1") {
-        SettingValue.oninput = function () {
-            update(PathFireBase, { 'TempArea1': Number(SettingValue.value) });
-        }
-    }
-    else if (IDValue == "UpdateTempArea2") {
-        SettingValue.oninput = function () {
-            update(PathFireBase, { 'TempArea2': Number(SettingValue.value) });
-        }
-    }
-}
-
-SettingTemp("UpdateTempArea1", CapNhatGiatriArea1)
-SettingTemp("UpdateTempArea2", CapNhatGiatriArea2)
-
-function SettingHumid(IDValue, PathFireBase) {
-    var SettingValue = document.getElementById(IDValue);
-    //String(SettingFirebase);
-    if (IDValue == "UpdateHumidArea1") {
-        SettingValue.oninput = function () {
-            update(PathFireBase, { 'HumidArea1': Number(SettingValue.value) });
-        }
-    }
-    else if (IDValue == "UpdateHumidArea2") {
-        SettingValue.oninput = function () {
-            update(PathFireBase, { 'HumidArea2': Number(SettingValue.value) });
-        }
-    }
-}
-
-SettingHumid("UpdateHumidArea1", CapNhatGiatriArea1)
-SettingHumid("UpdateHumidArea2", CapNhatGiatriArea2)
-// Setting("UpdateTempArea1",CapNhatGiatriArea1,'Temp');
-// Setting("UpdateHumidArea1",CapNhatGiatriArea1,'Humid');
-// Setting("UpdateTempArea2",CapNhatGiatriArea2,'Temp');
-// Setting("UpdateHumidArea2",CapNhatGiatriArea2,'Humid');
-
+//Chart
 var dpsTempArea1 = []
 var dpsHumidArea1 = []; // dataPoints
 var dpsTempArea2 = [];
@@ -222,7 +150,6 @@ const ElementChartHumidArea2 = {
     }],
 }
 
-
 var chartTempArea1 = new CanvasJS.Chart("chartTemp1", ElementChartTempArea1);
 var chartHumidArea1 = new CanvasJS.Chart("chartHumid1", ElementChartHumidArea1);
 
@@ -259,6 +186,114 @@ var updateChart = function (index, valueindex, count) {
 
     charNumber[index].render();
 };
+
+function Vui() {
+    const DataHumid = async (DoAm1) => {
+        const valuehumid = await get(DoAm1)
+        return valuehumid.val()
+
+    }
+    console.log(DataHumid(DoAm1))
+}
+
+function Vui1() {
+    const DataHumid = get(DoAm1)
+    console.log(DataHumid)
+}
+
+
+function Vui2() {
+    get(DoAm1).then((snapshot) => {
+        updateChart(1, snapshot.val(), 100)
+        document.getElementById("do am khu vuc 1").innerHTML = snapshot.val();
+    })
+
+    get(NhietDo1).then((snapshot) => {
+        updateChart(0, snapshot.val(), 100)
+        document.getElementById("nhiet do khu vuc 1").innerHTML = snapshot.val();
+    })
+
+
+    get(DoAm2).then((snapshot) => {
+        updateChart(3, snapshot.val(), 100)
+        document.getElementById("do am khu vuc 2").innerHTML = snapshot.val();
+    })
+
+
+    get(NhietDo2).then((snapshot) => {
+        updateChart(2, snapshot.val(), 100)
+        document.getElementById("nhiet do khu vuc 2").innerHTML = snapshot.val();
+    })
+}
+
+
+Vui()
+Vui1()
+Vui2()
+setInterval(Vui2, 1000)
+
+
+var sliderNgang = document.getElementById("sliderNgangID");
+var bulb01 = document.getElementById("bulb01");
+sliderNgang.oninput = function () {
+    document.getElementById("sliderNgangValue").innerHTML = sliderNgang.value;
+    bulb01.style.opacity = sliderNgang.value / 100;
+    update(DoSang, { 'LightArea1': Number(sliderNgang.value) });
+};
+
+function SettingTemp(IDValue, PathFireBase) {
+    var SettingValue = document.getElementById(IDValue);
+    //String(SettingFirebase);
+    if (IDValue == "UpdateTempArea1") {
+        SettingValue.oninput = function () {
+            update(PathFireBase, { 'TempArea1': Number(SettingValue.value) });
+        }
+    }
+    else if (IDValue == "UpdateTempArea2") {
+        SettingValue.oninput = function () {
+            update(PathFireBase, { 'TempArea2': Number(SettingValue.value) });
+        }
+    }
+}
+
+// Thu Hoach
+
+const ThuHoachCay = ref(db, "IOT/Update");
+function ThuHoach() {
+    const day = new Date()
+    if (day.getHours() == 0) {
+        update(ThuHoachCay, { 'ThuHoach': Boolean(true) })
+    }
+    else {
+        update(ThuHoachCay, { 'ThuHoach': Boolean(false) })
+    }
+}
+
+ThuHoach();
+
+// Setting Temp & Humid
+
+SettingTemp("UpdateTempArea1", CapNhatGiatriArea1)
+SettingTemp("UpdateTempArea2", CapNhatGiatriArea2)
+
+function SettingHumid(IDValue, PathFireBase) {
+    var SettingValue = document.getElementById(IDValue);
+    //String(SettingFirebase);
+    if (IDValue == "UpdateHumidArea1") {
+        SettingValue.oninput = function () {
+            update(PathFireBase, { 'HumidArea1': Number(SettingValue.value) });
+        }
+    }
+    else if (IDValue == "UpdateHumidArea2") {
+        SettingValue.oninput = function () {
+            update(PathFireBase, { 'HumidArea2': Number(SettingValue.value) });
+        }
+    }
+}
+
+SettingHumid("UpdateHumidArea1", CapNhatGiatriArea1)
+SettingHumid("UpdateHumidArea2", CapNhatGiatriArea2)
+
 
 
 const tabs = document.querySelectorAll('.tab-btn')
@@ -297,5 +332,34 @@ modal.addEventListener('click', function (e) {
 })
 
 
+
+// onValue(DoAm1, (snapshot) => {
+//     const data = snapshot.val();
+//     console.log(snapshot)
+//     updateChart(1, data, 100)
+//     //setTimeout(function () { updateChart(data, 20) }, 1);
+//     document.getElementById("do am khu vuc 1").innerHTML = data;
+// });
+
+// onValue(NhietDo1, (snapshot) => {
+//     const data = snapshot.val();
+//     updateChart(0, data, 100)
+//     //setTimeout(function () { updateChart(data, 20) }, 1);
+//     document.getElementById("nhiet do khu vuc 1").innerHTML = data;
+// });
+
+// onValue(DoAm2, (snapshot) => {
+//     const data = snapshot.val();
+//     updateChart(3, data, 100)
+//     //setTimeout(function () { updateChart(data, 20) }, 1);
+//     document.getElementById("do am khu vuc 2").innerHTML = data;
+// });
+
+// onValue(NhietDo2, (snapshot) => {
+//     const data = snapshot.val();
+//     updateChart(2, data, 100)
+//     //setTimeout(function () { updateChart(data, 20) }, 1);
+//     document.getElementById("nhiet do khu vuc 2").innerHTML = data;
+// });
 
 
