@@ -41,8 +41,7 @@ onValue(CheckLoraConnect, (snapshot) => {
 
 // Get Temp & Humid and Draw Chart
 
-const CapNhatGiatriArea1 = ref(db, "IOT/Update");
-const CapNhatGiatriArea2 = ref(db, "IOT/Update");
+
 
 const DoAm1 = ref(db, "IOT/Area1/Getting/Humid");
 const NhietDo1 = ref(db, "IOT/Area1/Getting/Temp");
@@ -187,20 +186,6 @@ var updateChart = function (index, valueindex, count) {
     charNumber[index].render();
 };
 
-function Vui() {
-    const DataHumid = async (DoAm1) => {
-        const valuehumid = await get(DoAm1)
-        return valuehumid.val()
-
-    }
-    console.log(DataHumid(DoAm1))
-}
-
-function Vui1() {
-    const DataHumid = get(DoAm1)
-    console.log(DataHumid)
-}
-
 
 function Vui2() {
     get(DoAm1).then((snapshot) => {
@@ -226,35 +211,12 @@ function Vui2() {
     })
 }
 
-
-Vui()
-Vui1()
 Vui2()
-setInterval(Vui2, 1000)
+setInterval(Vui2, 5000)
 
 
-var sliderNgang = document.getElementById("sliderNgangID");
-var bulb01 = document.getElementById("bulb01");
-sliderNgang.oninput = function () {
-    document.getElementById("sliderNgangValue").innerHTML = sliderNgang.value;
-    bulb01.style.opacity = sliderNgang.value / 100;
-    update(DoSang, { 'LightArea1': Number(sliderNgang.value) });
-};
 
-function SettingTemp(IDValue, PathFireBase) {
-    var SettingValue = document.getElementById(IDValue);
-    //String(SettingFirebase);
-    if (IDValue == "UpdateTempArea1") {
-        SettingValue.oninput = function () {
-            update(PathFireBase, { 'TempArea1': Number(SettingValue.value) });
-        }
-    }
-    else if (IDValue == "UpdateTempArea2") {
-        SettingValue.oninput = function () {
-            update(PathFireBase, { 'TempArea2': Number(SettingValue.value) });
-        }
-    }
-}
+
 
 // Thu Hoach
 
@@ -272,6 +234,23 @@ function ThuHoach() {
 ThuHoach();
 
 // Setting Temp & Humid
+const CapNhatGiatriArea1 = ref(db, "IOT/Update");
+const CapNhatGiatriArea2 = ref(db, "IOT/Update");
+
+function SettingTemp(IDValue, PathFireBase) {
+    var SettingValue = document.getElementById(IDValue);
+    //String(SettingFirebase);
+    if (IDValue == "UpdateTempArea1") {
+        SettingValue.oninput = function () {
+            update(PathFireBase, { 'TempArea1': Number(SettingValue.value) });
+        }
+    }
+    else if (IDValue == "UpdateTempArea2") {
+        SettingValue.oninput = function () {
+            update(PathFireBase, { 'TempArea2': Number(SettingValue.value) });
+        }
+    }
+}
 
 SettingTemp("UpdateTempArea1", CapNhatGiatriArea1)
 SettingTemp("UpdateTempArea2", CapNhatGiatriArea2)
@@ -331,35 +310,87 @@ modal.addEventListener('click', function (e) {
     }
 })
 
+// ON-OFF BUTTON
+// const IDImageOnOFF = ['KHUVUC1_MAYBOM', 'KHUVUC2_MAYBOM',
+//     'KHUVUC1_QUATTHONGGIO1', 'KHUVUC1_QUATTHONGGIO2', 'KHUVUC1_QUATTHONGGIO3',
+//     'KHUVUC1_QUATTHONGGIO4', 'KHUVUC1_QUATTHONGGIO5', 'KHUVUC1_QUATTHONGGIO6',
+//     'KHUVUC2_QUATTHONGGIO1', 'KHUVUC2_QUATTHONGGIO2', 'KHUVUC2_QUATTHONGGIO3',
+//     'KHUVUC2_QUATTHONGGIO4', 'KHUVUC2_QUATTHONGGIO5', 'KHUVUC2_QUATTHONGGIO6'];
 
+// const IDButtonOnOFF = ['BUTTON_KHUVUC1_MAYBOM', 'BUTTON_KHUVUC2_MAYBOM',
+//     'BUTTON_KHUVUC1_QUATTHONGGIO1', 'BUTTON_KHUVUC1_QUATTHONGGIO2', 'BUTTON_KHUVUC1_QUATTHONGGIO3',
+//     'BUTTON_KHUVUC1_QUATTHONGGIO4', 'BUTTON_KHUVUC1_QUATTHONGGIO5', 'BUTTON_KHUVUC1_QUATTHONGGIO6',
+//     'BUTTON_KHUVUC2_QUATTHONGGIO1', 'BUTTON_KHUVUC2_QUATTHONGGIO2', 'BUTTON_KHUVUC2_QUATTHONGGIO3',
+//     'BUTTON_KHUVUC2_QUATTHONGGIO4', 'BUTTON_KHUVUC2_QUATTHONGGIO5', 'BUTTON_KHUVUC2_QUATTHONGGIO6'];
 
-// onValue(DoAm1, (snapshot) => {
-//     const data = snapshot.val();
-//     console.log(snapshot)
-//     updateChart(1, data, 100)
-//     //setTimeout(function () { updateChart(data, 20) }, 1);
-//     document.getElementById("do am khu vuc 1").innerHTML = data;
-// });
+const buttonON = ['KHUVUC1_MAYBOM_ON',
+    'KHUVUC1_QUATTHONGGIO1_ON', 'KHUVUC1_QUATTHONGGIO2_ON', 'KHUVUC1_QUATTHONGGIO3_ON',
+    'KHUVUC1_QUATTHONGGIO4_ON', 'KHUVUC1_QUATTHONGGIO5_ON', 'KHUVUC1_QUATTHONGGIO6_ON',
+    'KHUVUC2_MAYBOM_ON',
+    'KHUVUC2_QUATTHONGGIO1_ON', 'KHUVUC2_QUATTHONGGIO2_ON', 'KHUVUC2_QUATTHONGGIO3_ON',
+    'KHUVUC2_QUATTHONGGIO4_ON', 'KHUVUC2_QUATTHONGGIO5_ON', 'KHUVUC2_QUATTHONGGIO6_ON'
+];
 
-// onValue(NhietDo1, (snapshot) => {
-//     const data = snapshot.val();
-//     updateChart(0, data, 100)
-//     //setTimeout(function () { updateChart(data, 20) }, 1);
-//     document.getElementById("nhiet do khu vuc 1").innerHTML = data;
-// });
+const buttonOFF = ['KHUVUC1_MAYBOM_OFF',
+    'KHUVUC1_QUATTHONGGIO1_OFF', 'KHUVUC1_QUATTHONGGIO2_OFF', 'KHUVUC1_QUATTHONGGIO3_OFF',
+    'KHUVUC1_QUATTHONGGIO4_OFF', 'KHUVUC1_QUATTHONGGIO5_OFF', 'KHUVUC1_QUATTHONGGIO6_OFF',
+    'KHUVUC2_MAYBOM_OFF',
+    'KHUVUC2_QUATTHONGGIO1_OFF', 'KHUVUC2_QUATTHONGGIO2_OFF', 'KHUVUC2_QUATTHONGGIO3_OFF',
+    'KHUVUC2_QUATTHONGGIO4_OFF', 'KHUVUC2_QUATTHONGGIO5_OFF', 'KHUVUC2_QUATTHONGGIO6_OFF'
+];
 
-// onValue(DoAm2, (snapshot) => {
-//     const data = snapshot.val();
-//     updateChart(3, data, 100)
-//     //setTimeout(function () { updateChart(data, 20) }, 1);
-//     document.getElementById("do am khu vuc 2").innerHTML = data;
-// });
+const DieuKhienKhuVuc1 = ref(db, "IOT/Update");
+const DieuKhienKhuVuc2 = ref(db, "IOT/Update");
 
-// onValue(NhietDo2, (snapshot) => {
-//     const data = snapshot.val();
-//     updateChart(2, data, 100)
-//     //setTimeout(function () { updateChart(data, 20) }, 1);
-//     document.getElementById("nhiet do khu vuc 2").innerHTML = data;
-// });
+const IDImageOnOFF = document.getElementsByClassName('ImageButtonOnOff')
+const IDButtonOnOFF = document.getElementsByClassName('BUTTON_ON_OFF')
+let statusButton = [false, false, false, false, false, false, false
+    , false, false, false, false, false, false, false];
+console.log(IDButtonOnOFF[7])
+function OnOffDevice(Index) {
+    IDButtonOnOFF[Index].addEventListener('click', function () {
+        // document.getElementById(IDImageOnOFF[i]).src = statusButton[i] ? 'picture/RedButton.png' : 'picture/GreenButton.png'
+        IDImageOnOFF[Index].src = statusButton[Index] ? 'picture/RedButton.png' : 'picture/GreenButton.png'
+        if (Index > 6) {
+
+            if (statusButton[Index] == false) {
+                    update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc2': String(buttonON[Index])});
+            }
+            else {
+                    update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc2': String(buttonOFF[Index]) });
+            }
+        }
+
+        else if(Index <= 6 )
+        {
+            if (statusButton[Index] == false) {
+                    update(DieuKhienKhuVuc1, { 'DieuKhienKhuVuc1': String(buttonON[Index]) });
+            }
+            else {
+                    update(DieuKhienKhuVuc1, { 'DieuKhienKhuVuc1': String(buttonOFF[Index]) });
+            }
+        }
+        statusButton[Index] = !statusButton[Index]
+    })
+}
+
+// OnOffDevice(0); OnOffDevice(1); OnOffDevice(2); OnOffDevice(3); OnOffDevice(4);
+// OnOffDevice(5); OnOffDevice(6); OnOffDevice(7); OnOffDevice(8); OnOffDevice(9);
+// OnOffDevice(10); OnOffDevice(11); OnOffDevice(12); OnOffDevice(13);
+
+for(var i = 0; i<= IDButtonOnOFF.length;i++){
+    OnOffDevice(i)
+}
+
+// let statusButton = false
+// function OnOffDevice() {
+//     for (var i = 0; i <= IDButtonOnOFF.length; i++) {
+//         IDButtonOnOFF[i].addEventListener('click', function () {
+//             IDImageOnOFF[i].src = statusButton ? 'picture/RedButton.png' : 'picture/GreenButton.png'
+//         })
+//     }
+// }
+
+// OnOffDevice()
 
 
