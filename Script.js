@@ -310,77 +310,147 @@ modal.addEventListener('click', function (e) {
     }
 })
 
-// ON-OFF BUTTON
-// const IDImageOnOFF = ['KHUVUC1_MAYBOM', 'KHUVUC2_MAYBOM',
-//     'KHUVUC1_QUATTHONGGIO1', 'KHUVUC1_QUATTHONGGIO2', 'KHUVUC1_QUATTHONGGIO3',
-//     'KHUVUC1_QUATTHONGGIO4', 'KHUVUC1_QUATTHONGGIO5', 'KHUVUC1_QUATTHONGGIO6',
-//     'KHUVUC2_QUATTHONGGIO1', 'KHUVUC2_QUATTHONGGIO2', 'KHUVUC2_QUATTHONGGIO3',
-//     'KHUVUC2_QUATTHONGGIO4', 'KHUVUC2_QUATTHONGGIO5', 'KHUVUC2_QUATTHONGGIO6'];
 
-// const IDButtonOnOFF = ['BUTTON_KHUVUC1_MAYBOM', 'BUTTON_KHUVUC2_MAYBOM',
-//     'BUTTON_KHUVUC1_QUATTHONGGIO1', 'BUTTON_KHUVUC1_QUATTHONGGIO2', 'BUTTON_KHUVUC1_QUATTHONGGIO3',
-//     'BUTTON_KHUVUC1_QUATTHONGGIO4', 'BUTTON_KHUVUC1_QUATTHONGGIO5', 'BUTTON_KHUVUC1_QUATTHONGGIO6',
-//     'BUTTON_KHUVUC2_QUATTHONGGIO1', 'BUTTON_KHUVUC2_QUATTHONGGIO2', 'BUTTON_KHUVUC2_QUATTHONGGIO3',
-//     'BUTTON_KHUVUC2_QUATTHONGGIO4', 'BUTTON_KHUVUC2_QUATTHONGGIO5', 'BUTTON_KHUVUC2_QUATTHONGGIO6'];
-
+// ON OFF Devices
 const buttonON = ['KHUVUC1_MAYBOM_ON',
+    'KHUVUC1_LUOICHANNANG_OPEN',
+
     'KHUVUC1_QUATTHONGGIO1_ON', 'KHUVUC1_QUATTHONGGIO2_ON', 'KHUVUC1_QUATTHONGGIO3_ON',
     'KHUVUC1_QUATTHONGGIO4_ON', 'KHUVUC1_QUATTHONGGIO5_ON', 'KHUVUC1_QUATTHONGGIO6_ON',
+
     'KHUVUC2_MAYBOM_ON',
+    'KHUVUC2_LUOICHANNANG_OPEN',
+
     'KHUVUC2_QUATTHONGGIO1_ON', 'KHUVUC2_QUATTHONGGIO2_ON', 'KHUVUC2_QUATTHONGGIO3_ON',
     'KHUVUC2_QUATTHONGGIO4_ON', 'KHUVUC2_QUATTHONGGIO5_ON', 'KHUVUC2_QUATTHONGGIO6_ON'
 ];
 
 const buttonOFF = ['KHUVUC1_MAYBOM_OFF',
+    'KHUVUC1_LUOICHANNANG_CLOSE',
+
     'KHUVUC1_QUATTHONGGIO1_OFF', 'KHUVUC1_QUATTHONGGIO2_OFF', 'KHUVUC1_QUATTHONGGIO3_OFF',
     'KHUVUC1_QUATTHONGGIO4_OFF', 'KHUVUC1_QUATTHONGGIO5_OFF', 'KHUVUC1_QUATTHONGGIO6_OFF',
+
     'KHUVUC2_MAYBOM_OFF',
+    'KHUVUC2_LUOICHANNANG_CLOSE',
+
     'KHUVUC2_QUATTHONGGIO1_OFF', 'KHUVUC2_QUATTHONGGIO2_OFF', 'KHUVUC2_QUATTHONGGIO3_OFF',
     'KHUVUC2_QUATTHONGGIO4_OFF', 'KHUVUC2_QUATTHONGGIO5_OFF', 'KHUVUC2_QUATTHONGGIO6_OFF'
 ];
 
+const buttonAUTO = ['KHUVUC1_MAYBOM_AUTO', 'KHUVUC1_LUOICHANNANG_AUTO',
+    'KHUVUC2_MAYBOM_AUTO', 'KHUVUC2_LUOICHANNANG_AUTO'];
+
 const DieuKhienKhuVuc1 = ref(db, "IOT/Update");
 const DieuKhienKhuVuc2 = ref(db, "IOT/Update");
 
-const IDImageOnOFF = document.getElementsByClassName('ImageButtonOnOff')
-const IDButtonOnOFF = document.getElementsByClassName('BUTTON_ON_OFF')
-let statusButton = [false, false, false, false, false, false, false
+const IDImageOnOFF = document.querySelectorAll('.ImageButtonOnOff')
+const IDButtonOnOFF = document.querySelectorAll('.BUTTON_ON_OFF')
+const IDButtonAUTO = document.querySelectorAll('.BUTTON_AUTO')
+
+let statusButtonOnOff = [false, false, false, false, false, false, false
     , false, false, false, false, false, false, false];
-console.log(IDButtonOnOFF[7])
-function OnOffDevice(Index) {
-    IDButtonOnOFF[Index].addEventListener('click', function () {
-        // document.getElementById(IDImageOnOFF[i]).src = statusButton[i] ? 'picture/RedButton.png' : 'picture/GreenButton.png'
-        IDImageOnOFF[Index].src = statusButton[Index] ? 'picture/RedButton.png' : 'picture/GreenButton.png'
-        if (Index > 6) {
 
-            if (statusButton[Index] == false) {
-                    update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc2': String(buttonON[Index])});
+let statusButtonAUTO = [false, false, false, false];
+
+console.log(IDButtonAUTO)
+
+IDButtonOnOFF.forEach(function (button, Index) {
+    button.addEventListener('click', function () {
+        IDImageOnOFF[Index].src = statusButtonOnOff[Index] ? 'picture/RedButton.png' : 'picture/GreenButton.png'
+        if (Index > 7) {
+            if (Index == 8 || Index == 9) {
+                IDButtonAUTO[Index - 6].style.background = null;
+            }
+
+            if (statusButtonOnOff[Index] == false) {
+                update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc2': String(buttonON[Index]) });
             }
             else {
-                    update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc2': String(buttonOFF[Index]) });
+                update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc2': String(buttonOFF[Index]) });
             }
         }
 
-        else if(Index <= 6 )
-        {
-            if (statusButton[Index] == false) {
-                    update(DieuKhienKhuVuc1, { 'DieuKhienKhuVuc1': String(buttonON[Index]) });
+        else if (Index <= 7) {
+            if (Index == 0 || Index == 1) {
+                IDButtonAUTO[Index].style.background = null;
+            }
+            if (statusButtonOnOff[Index] == false) {
+                update(DieuKhienKhuVuc1, { 'DieuKhienKhuVuc1': String(buttonON[Index]) });
             }
             else {
-                    update(DieuKhienKhuVuc1, { 'DieuKhienKhuVuc1': String(buttonOFF[Index]) });
+                update(DieuKhienKhuVuc1, { 'DieuKhienKhuVuc1': String(buttonOFF[Index]) });
             }
         }
-        statusButton[Index] = !statusButton[Index]
+        statusButtonOnOff[Index] = !statusButtonOnOff[Index]
     })
-}
+})
+
+IDButtonAUTO.forEach(function (button, Index) {
+    IDButtonAUTO[Index].addEventListener('click', function () {
+        IDButtonAUTO[Index].style.background = "#DFDF30"
+        if (Index > 1) {
+            update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc2': String(buttonAUTO[Index]) });
+        }
+        else if (Index <= 1) {
+            update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc1': String(buttonAUTO[Index]) });
+        }
+    })
+})
+
+// function AutoDevices(Index) {
+//     IDButtonAUTO[Index].addEventListener('click', function () {
+//         IDButtonAUTO[Index].style.background = "#DFDF30"
+//         if (Index > 1) {
+//             update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc2': String(buttonAUTO[Index]) });
+//         }
+//         else if (Index <= 1) {
+//             update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc1': String(buttonAUTO[Index]) });
+//         }
+//     })
+// }
+
+// function OnOffDevice(Index) {
+//     IDButtonOnOFF[Index].addEventListener('click', function () {
+//         // document.getElementById(IDImageOnOFF[i]).src = statusButton[i] ? 'picture/RedButton.png' : 'picture/GreenButton.png'
+//         IDImageOnOFF[Index].src = statusButtonOnOff[Index] ? 'picture/RedButton.png' : 'picture/GreenButton.png'
+//         if (Index > 6) {
+
+//             if (statusButtonOnOff[Index] == false) {
+//                 update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc2': String(buttonON[Index]) });
+//             }
+//             else {
+//                 update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc2': String(buttonOFF[Index]) });
+//             }
+//         }
+
+//         else if (Index <= 6) {
+//             if (statusButtonOnOff[Index] == false) {
+//                 update(DieuKhienKhuVuc1, { 'DieuKhienKhuVuc1': String(buttonON[Index]) });
+//             }
+//             else {
+//                 update(DieuKhienKhuVuc1, { 'DieuKhienKhuVuc1': String(buttonOFF[Index]) });
+//             }
+//         }
+//         statusButtonOnOff[Index] = !statusButtonOnOff[Index]
+//     })
+// }
+// for (var i = 0; i <= IDButtonAUTO.length; i++) {
+//     AutoDevices(i)
+// }
+
+// for (i = 0; i <= IDButtonOnOFF.length; i++) {
+//     OnOffDevice(i)
+// }
+
 
 // OnOffDevice(0); OnOffDevice(1); OnOffDevice(2); OnOffDevice(3); OnOffDevice(4);
 // OnOffDevice(5); OnOffDevice(6); OnOffDevice(7); OnOffDevice(8); OnOffDevice(9);
 // OnOffDevice(10); OnOffDevice(11); OnOffDevice(12); OnOffDevice(13);
 
-for(var i = 0; i<= IDButtonOnOFF.length;i++){
-    OnOffDevice(i)
-}
+
+
+
 
 // let statusButton = false
 // function OnOffDevice() {
