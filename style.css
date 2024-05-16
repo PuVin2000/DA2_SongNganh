@@ -122,6 +122,11 @@ body {
     margin-top: 30px;
 }
 
+.Bach_Khoa{
+    justify-content: center;
+    text-align: center;
+}
+
 @keyframes moving {
     from {
         transition: translateX(50px);

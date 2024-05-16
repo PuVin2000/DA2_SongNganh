@@ -398,69 +398,14 @@ IDButtonAUTO.forEach(function (button, Index) {
     })
 })
 
-// function AutoDevices(Index) {
-//     IDButtonAUTO[Index].addEventListener('click', function () {
-//         IDButtonAUTO[Index].style.background = "#DFDF30"
-//         if (Index > 1) {
-//             update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc2': String(buttonAUTO[Index]) });
-//         }
-//         else if (Index <= 1) {
-//             update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc1': String(buttonAUTO[Index]) });
-//         }
-//     })
-// }
-
-// function OnOffDevice(Index) {
-//     IDButtonOnOFF[Index].addEventListener('click', function () {
-//         // document.getElementById(IDImageOnOFF[i]).src = statusButton[i] ? 'picture/RedButton.png' : 'picture/GreenButton.png'
-//         IDImageOnOFF[Index].src = statusButtonOnOff[Index] ? 'picture/RedButton.png' : 'picture/GreenButton.png'
-//         if (Index > 6) {
-
-//             if (statusButtonOnOff[Index] == false) {
-//                 update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc2': String(buttonON[Index]) });
-//             }
-//             else {
-//                 update(DieuKhienKhuVuc2, { 'DieuKhienKhuVuc2': String(buttonOFF[Index]) });
-//             }
-//         }
-
-//         else if (Index <= 6) {
-//             if (statusButtonOnOff[Index] == false) {
-//                 update(DieuKhienKhuVuc1, { 'DieuKhienKhuVuc1': String(buttonON[Index]) });
-//             }
-//             else {
-//                 update(DieuKhienKhuVuc1, { 'DieuKhienKhuVuc1': String(buttonOFF[Index]) });
-//             }
-//         }
-//         statusButtonOnOff[Index] = !statusButtonOnOff[Index]
-//     })
-// }
-// for (var i = 0; i <= IDButtonAUTO.length; i++) {
-//     AutoDevices(i)
-// }
-
-// for (i = 0; i <= IDButtonOnOFF.length; i++) {
-//     OnOffDevice(i)
-// }
+const SunNet1 = ref(db, "/IOT/Area1/Getting/SunNet");
 
 
-// OnOffDevice(0); OnOffDevice(1); OnOffDevice(2); OnOffDevice(3); OnOffDevice(4);
-// OnOffDevice(5); OnOffDevice(6); OnOffDevice(7); OnOffDevice(8); OnOffDevice(9);
-// OnOffDevice(10); OnOffDevice(11); OnOffDevice(12); OnOffDevice(13);
-
-
-
-
-
-// let statusButton = false
-// function OnOffDevice() {
-//     for (var i = 0; i <= IDButtonOnOFF.length; i++) {
-//         IDButtonOnOFF[i].addEventListener('click', function () {
-//             IDImageOnOFF[i].src = statusButton ? 'picture/RedButton.png' : 'picture/GreenButton.png'
-//         })
-//     }
-// }
-
-// OnOffDevice()
-
+const StatusSunNetArea = ['Lưới che nắng đang quá tải(SunNet is Overload)', 'Lưới che nắng đang dừng(SunNet is Stopping)',
+    'Lưới che nắng đang đóng(SunNet is Closing)', 'Lưới che nắng đã đóng(SunNet is Closed)',
+    'Lưới che nắng đang mở(SunNet is Opening)', 'Lưới che nắng đã mở(SunNet is Opened)'];
+onValue(SunNet1, (snapshot) => {
+    const data = snapshot.val();
+    document.getElementById("SunNetArea1").innerHTML = StatusSunNetArea[data];
+});
 
