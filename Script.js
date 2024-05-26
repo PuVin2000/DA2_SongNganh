@@ -240,38 +240,43 @@ const CapNhatGiatriArea2 = ref(db, "IOT/Update");
 function SettingTemp(IDValue, PathFireBase) {
     var SettingValue = document.getElementById(IDValue);
     //String(SettingFirebase);
-    if (IDValue == "UpdateTempArea1") {
-        SettingValue.oninput = function () {
-            update(PathFireBase, { 'TempArea1': Number(SettingValue.value) });
+    // const BTNSettingOK = document.getElementById("BtnSettingOk");
+    // BTNSettingOK.addEventListener("click", function () {
+        if (IDValue == "UpdateTempArea1") {
+            SettingValue.oninput = function () {
+                update(PathFireBase, { 'TempArea1': Number(SettingValue.value) });
+            }
         }
-    }
-    else if (IDValue == "UpdateTempArea2") {
-        SettingValue.oninput = function () {
-            update(PathFireBase, { 'TempArea2': Number(SettingValue.value) });
+        else if (IDValue == "UpdateTempArea2") {
+            SettingValue.oninput = function () {
+                update(PathFireBase, { 'TempArea2': Number(SettingValue.value) });
+            }
         }
-    }
+    //});
 }
 
-SettingTemp("UpdateTempArea1", CapNhatGiatriArea1)
-SettingTemp("UpdateTempArea2", CapNhatGiatriArea2)
 
 function SettingHumid(IDValue, PathFireBase) {
     var SettingValue = document.getElementById(IDValue);
     //String(SettingFirebase);
-    if (IDValue == "UpdateHumidArea1") {
-        SettingValue.oninput = function () {
-            update(PathFireBase, { 'HumidArea1': Number(SettingValue.value) });
+        if (IDValue == "UpdateHumidArea1") {
+            SettingValue.oninput = function () {
+                update(PathFireBase, { 'HumidArea1': Number(SettingValue.value) });
+            }
         }
-    }
-    else if (IDValue == "UpdateHumidArea2") {
-        SettingValue.oninput = function () {
-            update(PathFireBase, { 'HumidArea2': Number(SettingValue.value) });
+        else if (IDValue == "UpdateHumidArea2") {
+            SettingValue.oninput = function () {
+                update(PathFireBase, { 'HumidArea2': Number(SettingValue.value) });
+            }
         }
-    }
 }
 
+
+SettingTemp("UpdateTempArea1", CapNhatGiatriArea1)
+SettingTemp("UpdateTempArea2", CapNhatGiatriArea2)
 SettingHumid("UpdateHumidArea1", CapNhatGiatriArea1)
 SettingHumid("UpdateHumidArea2", CapNhatGiatriArea2)
+// alert("adfsdaf")
 
 
 
@@ -299,16 +304,17 @@ var btnClose = document.querySelector('.setting__footer button')
 
 function toggleModal() {
     modal.classList.toggle('hide')
+
 }
 
 btnOpen.addEventListener('click', toggleModal)
 btnClose.addEventListener('click', toggleModal)
 iconClose.addEventListener('click', toggleModal)
-modal.addEventListener('click', function (e) {
-    if (e.target == e.currentTarget) {
-        toggleModal();
-    }
-})
+// modal.addEventListener('click', function (e) {
+//     if (e.target == e.currentTarget) {
+//         toggleModal();
+//     }
+// })
 
 
 // ON OFF Devices
